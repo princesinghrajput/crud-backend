@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes')
-
+const userRoutes = require('./routes/userRoutes');
+const userAuthRoutes = require('./routes/authRoutes')
+ 
 const app = express();
 
 app.use(express.json()); //middleware
@@ -13,7 +14,8 @@ mongoose.connect("mongodb://localhost:27017/crud-app").then(()=>{
  
 })
 
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRoutes);
+app.use('/api/authUser', userAuthRoutes);
 
 app.get('/', (req, res)=>{
     res.json({msg:"hey I am working fine"})
