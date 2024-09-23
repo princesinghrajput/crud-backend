@@ -14,6 +14,17 @@ mongoose.connect("mongodb://localhost:27017/crud-app").then(()=>{
  
 })
 
+app.use((req, res, next)=>{
+    console.log("I am the middleware")
+
+    next()
+});
+
+app.use((req, res, next)=>{
+    console.log("This is the second middleware");
+
+    next();
+})
 app.use('/api/users', userRoutes);
 app.use('/api/authUser', userAuthRoutes);
 
