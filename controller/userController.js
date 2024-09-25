@@ -40,7 +40,7 @@ exports.updateUser = async(req, res)=>{
   try{
   
     const user = await User.findByIdAndUpdate(req.params.id, req.body,{new:true, runValidators:true})
-    if(!user) return res.status(404).send("User not found");
+   
     return res.status(200).send(user)
   } catch(err){
     return res.status(404).send(err.message)

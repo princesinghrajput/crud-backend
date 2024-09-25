@@ -33,9 +33,8 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await UserAuth.findOne({ email: email });
 
-  console.log("ExistUser", user);
+  const user = await UserAuth.findOne({ email: email });
 
   if (!user) {
     return res.status(404).send("Invalid username or password!");
@@ -46,7 +45,7 @@ exports.loginUser = async (req, res) => {
 
   //Generate jwt token
 
-  const token = jwt.sign({userId:user._id }, 'abcd', { expiresIn: '1h' });
+  const token = jwt.sign({userId:user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
   console.log(token)
 
